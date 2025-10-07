@@ -7,8 +7,11 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+swagger-coverage-output/
+tests/swagger-coverage-output/
+../.idea
 .Python
-build/
+.venv/lib/python3/site-packages/pip/_internal/operations/build/
 develop-eggs/
 dist/
 downloads/
@@ -25,6 +28,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.vscode
 
 # PyInstaller
 #  Usually these files are written by a python script from a templates
@@ -124,7 +128,7 @@ ipython_config.py
 #   in the .venv directory. It is recommended not to include this directory in version control.
 .pixi
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+# PEP 582; used by e.g. .github.com/David-OConnor/pyflow and .github.com/pdm-project/pdm
 __pypackages__/
 
 # Celery stuff
@@ -184,7 +188,7 @@ cython_debug/
 # Visual Studio Code
 #  Visual Studio Code specific templates is maintained in a separate VisualStudioCode.gitignore
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  and can be added to the global gitignore or merged into this file. However, if you prefer,
 #  you could uncomment the following to ignore the entire vscode folder
 # .vscode/
 
