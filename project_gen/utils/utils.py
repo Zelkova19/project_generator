@@ -1,3 +1,4 @@
+import pathlib
 import subprocess
 import sys
 from pathlib import Path
@@ -48,8 +49,11 @@ def create_project():
         "project_name": remote,
         "repository": remote,
     }
+    templates = str(
+        pathlib.Path(__file__).parent.parent / "templates" / "python"
+    )
     cookiecutter(
-        template="gh:Zelkova19/templates",
+        template=templates,
         no_input=True,
         overwrite_if_exists=True,
         output_dir=parent_dir,
