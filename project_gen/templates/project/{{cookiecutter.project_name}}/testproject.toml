@@ -1,0 +1,4 @@
+# Заполни конфигурацию для тестового проекта, укажи в нем необходимые ресурсы, напримерЖ
+#[[http]]
+#service_name = "example_service"
+#swagger="http://example_servoce/some-api/openapi.json"
