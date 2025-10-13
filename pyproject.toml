@@ -1,18 +1,23 @@
-[project]
+[tool.poetry]
 name = "project-generator"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "zelkova",email = "cohiba666@gmail.com"}
+    "zelkova <cohiba666@gmail.com>"
 ]
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "cookiecutter (>=2.6.0,<3.0.0)",
-    "requests (>=2.32.5,<3.0.0)"
-]
+packages = [{ include = "project_gen" }]
+
+[tool.poetry.dependencies]
+python = "^3.12.7"
+cookiecutter = "^2.6.0"
+requests = "^2.32.5"
+toml = "^0.10.2"
 
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+project_gen = "project_gen.main:cli"

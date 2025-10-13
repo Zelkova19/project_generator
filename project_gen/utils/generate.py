@@ -2,6 +2,9 @@ import os
 import pathlib
 import shutil
 
+import toml
+
+from project_gen.utils.download import download
 from project_gen.utils.utils import run_command
 
 
@@ -61,3 +64,21 @@ def move_files(package_name: str) -> None:
         shutil.rmtree(f"clients/http/{package_name}")
     shutil.move(f"{package_name}/{package_name}", f"clients/http/{package_name}")
     shutil.rmtree(package_name)
+
+
+def generate(template: str | None = None) -> None:
+    with open("testproject.toml") as config_file:
+        config = toml.load(config_file)
+
+    for http_service in config["http"]:
+        package_name = http_service["service_name"].replace('-', '_')
+        swagger_url = http_service["swagger"]
+
+        generate_api(
+            package_name=package_name,
+            swagger_url=swagger_url,
+            templates=template,
+        )
+
+        move_files(package_name=package_name)
+        replace_import_in_file(directory="clients/http", package_name=package_name)

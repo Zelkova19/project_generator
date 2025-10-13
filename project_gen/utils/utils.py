@@ -1,4 +1,3 @@
-import pathlib
 import subprocess
 import sys
 from pathlib import Path
@@ -7,7 +6,6 @@ from cookiecutter.main import cookiecutter
 
 
 def run_command(command: list[str]) -> str:
-    print(" ".join(command))
     result = subprocess.run(args=command, text=True, capture_output=True)
     print(result.stdout)
     if result.returncode != 0:
@@ -36,24 +34,24 @@ def get_git_repository_info() -> str:
     return remote
 
 
-def create_project():
+def create_project(template: str | None = None) -> None:
     print("Create project")
     check_git_repository()
     user_email, authors = get_git_user_info()
     remote = get_git_repository_info()
     print(f"{authors} <{user_email}>")
-    parent_dir = Path().cwd()
+    parent_dir = Path().cwd().parent
     extra_context = {
         "user_email": user_email,
         "authors": authors,
         "project_name": remote,
         "repository": remote,
     }
-    templates = str(
-        pathlib.Path(__file__).parent.parent / "templates" / "python"
+    template = template or str(
+        Path(__file__).parent.parent / "templates" / "project"
     )
     cookiecutter(
-        template=templates,
+        template=template,
         no_input=True,
         overwrite_if_exists=True,
         output_dir=parent_dir,
@@ -61,5 +59,6 @@ def create_project():
     )
     print("project created")
 
-#
-# create_project()
+def setup(template: str | None = None) -> None:
+    check_git_repository()
+    create_project(template)
