@@ -3,6 +3,8 @@ import click
 from project_gen.utils.download import init
 from project_gen.utils.generate import generate
 from project_gen.utils.utils import setup
+from project_gen.internal.generator import Generator
+from project_gen.internal.test_generator import TestsGenerator
 
 
 @click.group()
@@ -20,6 +22,8 @@ def setup_command(template: str | None) -> None:
 @cli.command("generate")
 def generate_command() -> None:
     generate()
+    Generator().generate()
+    TestsGenerator().generate()
 
 
 @cli.command("init")
